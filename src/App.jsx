@@ -21,6 +21,10 @@ export default function App() {
         <ContactSection content={site.contact} links={site.links} />
       </main>
       <SiteFooter brand={site.brand} navigation={site.navigation} footer={site.footer} links={site.links} />
+      <div className="preview-watermark" aria-label="Client preview by TechVedhaBees">
+        <span aria-hidden="true">TVB</span>
+        <span>Client Preview · TechVedhaBees</span>
+      </div>
     </>
   );
 }

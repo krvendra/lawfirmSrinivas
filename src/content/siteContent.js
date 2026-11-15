@@ -188,7 +188,7 @@ export const site = {
   },
   footer: {
     disclaimer: "Website information is for general purposes and is not legal advice. Confirm all professional details and practice areas before publication.",
-    privacy: "Privacy notice to be provided before launch.",
+    privacy: "This preview uses no client-side IP or device tracking. Hosting providers may process connection data.",
     credit: "Designed & Developed by TechVedhaBees",
     copyright: "© 2026 Srinivas Kaja · Advocates & Legal Professionals",
   },

@@ -237,6 +237,10 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(40px, 4.3vw, 62px); 
 .footer-bottom-inner span:nth-child(2) { color: var(--gold-light); }
 .footer-bottom-inner a:hover { color: #fff; }
 
+/* Visible attribution for the client presentation preview. */
+.preview-watermark { position: fixed; z-index: 28; right: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 9px; padding: 9px 12px; color: #f8f6f1; border: 1px solid #c5a15b; background: #0b1421ed; box-shadow: 0 5px 20px #0004; font-size: 12px; letter-spacing: .04em; pointer-events: none; }
+.preview-watermark > span:first-child { display: grid; width: 25px; height: 25px; place-items: center; color: var(--gold-light); border: 1px solid #c5a15b85; font-family: var(--serif); font-size: 12px; }
+
 @media (max-width: 1100px) {
   .shell { width: calc(100% - 56px); }
   .site-header-inner { width: calc(100% - 48px); }
@@ -326,6 +330,8 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(40px, 4.3vw, 62px); 
   .lightbox figure { max-width: 94vw; }
   .lightbox-arrow { width: 38px; background: #0b1421b5; }
   .lightbox-prev { left: 10px; }.lightbox-next { right: 10px; }
+  .preview-watermark { right: 8px; bottom: 8px; gap: 6px; padding: 6px 8px; font-size: 11px; }
+  .preview-watermark > span:first-child { width: 22px; height: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
