@@ -175,7 +175,6 @@ export const site = {
   },
   footer: {
     disclaimer: "Website information is for general purposes and is not legal advice. Confirm all professional details and practice areas before publication.",
-    privacy: "Each consented client preview Continue adds to the visit count shown here. The private record stores first and latest Continue times in IST and approximate city, region, and country from the first Continue. It does not save names, IP addresses, or device details; hosting providers may process connection data.",
     creditPrefix: "Designed & Developed by",
     creditName: "TechVedhaBees",
     creditUrl: "https://techvedhabees.com/",
