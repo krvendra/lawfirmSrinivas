@@ -29,9 +29,7 @@ function approximateLocation(request) {
   return { city: cf.city || null, region: cf.region || null, country: cf.country || null };
 }
 
-export async function onRequest(context) {
-  const { request, env, params } = context;
-  const { action, token } = params;
+export async function handlePreviewRoute(request, env, action, token) {
   if (action === "home" && token === "continue" && request.method === "POST") {
     const origin = request.headers.get("Origin");
     if (origin && origin !== new URL(request.url).origin) {
@@ -49,15 +47,14 @@ export async function onRequest(context) {
     const existing = await env.PREVIEW_LOG.get(RECORD_KEY);
     const previous = existing ? JSON.parse(existing) : null;
     const now = istTimestamp();
+    const visitCount = (Number(previous?.visitCount) || (previous ? 1 : 0)) + 1;
     await env.PREVIEW_LOG.put(RECORD_KEY, JSON.stringify({
-      visitCount: (Number(previous?.visitCount) || (previous ? 1 : 0)) + 1,
+      visitCount,
       firstContinueAtIst: previous?.firstContinueAtIst || now,
       lastContinueAtIst: now,
       location: previous?.location || approximateLocation(request),
     }));
-    return reply(JSON.stringify({ visitCount: (Number(previous?.visitCount) || (previous ? 1 : 0)) + 1 }), 200, {
-      "Content-Type": "application/json; charset=utf-8",
-    });
+    return reply(JSON.stringify({ visitCount }), 200, { "Content-Type": "application/json; charset=utf-8" });
   }
 
   if (action === "status" && request.method === "GET") {
@@ -87,17 +84,10 @@ export async function onRequest(context) {
   }
 
   if (action === "count" && request.method === "GET" && token === "total") {
-    if (!env.PREVIEW_LOG) {
-      return reply(JSON.stringify({ visitCount: 0 }), 200, {
-        "Content-Type": "application/json; charset=utf-8",
-      });
-    }
-    const saved = await env.PREVIEW_LOG.get(RECORD_KEY);
+    const saved = env.PREVIEW_LOG ? await env.PREVIEW_LOG.get(RECORD_KEY) : null;
     const record = saved ? JSON.parse(saved) : null;
     const visitCount = Number(record?.visitCount) || (record ? 1 : 0);
-    return reply(JSON.stringify({ visitCount }), 200, {
-      "Content-Type": "application/json; charset=utf-8",
-    });
+    return reply(JSON.stringify({ visitCount }), 200, { "Content-Type": "application/json; charset=utf-8" });
   }
 
   return reply("Not found", 404, { "Content-Type": "text/plain; charset=utf-8" });

@@ -4,11 +4,11 @@ Single-page React and Vite homepage for the proposed Srinivas Kaja legal profess
 
 ## Run locally
 
-Install dependencies, then run the same-origin site and preview tracker together:
+Install dependencies, then run the Worker and built homepage together:
 
 ```bash
 npm install
-npm run pages:dev
+npm run dev
 ```
 
 Open `http://localhost:5173/`. A consent popup appears on the homepage. Each
@@ -27,17 +27,17 @@ STATUS_TOKEN=local-status-check
 
 Create a production build separately with `npm run build`.
 
-## Cloudflare Pages deployment
+## Cloudflare Workers deployment
 
-This application is configured for Cloudflare Pages: the React build and the
-`functions/` API share one project and origin. After signing in to Cloudflare,
-connect the repository in Pages, use `npm run build` as the build command and
-`dist` as the build output directory. Add a KV namespace binding named
-`PREVIEW_LOG`, and set `STATUS_TOKEN` as a Pages secret. The homepage consent
-popup submits to the same-origin Pages Function; the aggregate count appears
-in the homepage footer and the private timestamp/location record is available
-at `/preview-link/status/<STATUS_TOKEN>`. No separate preview URL is needed.
-No GitHub Pages deployment is configured.
+The React build and Worker routes deploy together as one Cloudflare Worker.
+The repository settings should use `npm run build` as the build command and
+`npx wrangler deploy` as the deploy command, with `/` as the root directory.
+Add a KV namespace binding named `PREVIEW_LOG` and a secret named
+`STATUS_TOKEN` in the Worker settings. The homepage consent popup submits to
+the same-origin Worker; the aggregate count appears in the homepage footer and
+the private timestamp/location record is available at
+`/preview-link/status/<STATUS_TOKEN>`. No separate preview URL is needed.
+GitHub Pages deployment is disabled.
 
 ## Edit content and images
 
