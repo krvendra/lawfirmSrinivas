@@ -151,19 +151,6 @@ export const site = {
     image: imageAsset("courthouse-advocates.webp"),
     imageAlt: "Advocates photographed outside the Supreme Court of India; shown as a professional moment, not a practice location.",
   },
-  gallery: {
-    eyebrow: "Professional gallery",
-    title: "Moments. Milestones. Memories.",
-    intro: "A selection of supplied family and professional photographs. Additional event and educational images can be added when approved.",
-    images: [
-      { src: imageAsset("kaja-family.webp"), alt: "The Kaja family together in legal attire", caption: "A family connected by law" },
-      { src: imageAsset("courthouse-advocates.webp"), alt: "Srinivas and Laxmi Kaja in legal attire outside the Supreme Court of India", caption: "A professional moment" },
-      { src: imageAsset("srinivas-kaja.webp"), alt: "Portrait of Srinivas Kaja", caption: "Advocate Srinivas Kaja" },
-      { src: imageAsset("laxmi-srinivas-kaja.webp"), alt: "Portrait of Laxmi Srinivas Kaja", caption: "Advocate Laxmi Srinivas Kaja" },
-      { src: imageAsset("son-one-placeholder.webp"), alt: "Placeholder portrait for a family member", caption: "Portrait to be provided · Son 1" },
-      { src: imageAsset("son-two-placeholder.webp"), alt: "Placeholder portrait for a family member", caption: "Portrait to be provided · Son 2" },
-    ],
-  },
   values: {
     eyebrow: "Our values",
     title: "Principles that guide the work.",
@@ -188,7 +175,7 @@ export const site = {
   },
   footer: {
     disclaimer: "Website information is for general purposes and is not legal advice. Confirm all professional details and practice areas before publication.",
-    privacy: "This preview uses no client-side IP or device tracking. Hosting providers may process connection data.",
+    privacy: "Each consented client preview Continue adds to the visit count shown here. The private record stores first and latest Continue times in IST and approximate city, region, and country from the first Continue. It does not save names, IP addresses, or device details; hosting providers may process connection data.",
     creditPrefix: "Designed & Developed by",
     creditName: "TechVedhaBees",
     creditUrl: "https://techvedhabees.com/",

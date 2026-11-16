@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pages:dev": "npm run build && npx --yes wrangler pages dev dist --port 5173 --kv PREVIEW_LOG"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",

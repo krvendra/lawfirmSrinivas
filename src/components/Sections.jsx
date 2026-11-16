@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness, Check, ChevronLeft, ChevronRight,
-  FileText, HeartHandshake, Home, Landmark, MapPin, Scale, ShieldCheck, Sparkles, UsersRound, X,
+  ArrowDown, ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness, Check,
+  FileText, HeartHandshake, Home, Landmark, MapPin, Scale, ShieldCheck, Sparkles, UsersRound,
 } from "lucide-react";
 import Reveal from "./Reveal.jsx";
 
@@ -149,38 +149,6 @@ export function CourtsSection({ content }) {
         <Reveal><p className="eyebrow"><span />{content.eyebrow}</p><h2>{content.title}</h2><p className="courts-intro">{content.intro}</p><span className="jurisdiction-pill"><MapPin size={14} />{content.jurisdiction}</span></Reveal>
         <div className="court-list">{content.list.map((court, index) => <Reveal className="court-card" delay={index * 0.12} key={court}><Landmark size={22} /><span><small>0{index + 1} · COURT</small><strong>{court}</strong></span><ArrowUpRight size={16} /></Reveal>)}</div>
       </div>
-    </section>
-  );
-}
-
-export function GallerySection({ content }) {
-  const [active, setActive] = useState(null);
-  useEffect(() => {
-    if (active === null) return undefined;
-    const handle = (event) => { if (event.key === "Escape") setActive(null); };
-    window.addEventListener("keydown", handle);
-    return () => window.removeEventListener("keydown", handle);
-  }, [active]);
-  const change = (offset) => setActive((current) => (current + offset + content.images.length) % content.images.length);
-  return (
-    <section className="gallery-section section-pad" id="gallery">
-      <div className="shell"><SectionHeading eyebrow={content.eyebrow} title={content.title} intro={content.intro} />
-        <div className="gallery-grid">
-          {content.images.map((image, index) => <Reveal className={`gallery-item gallery-item-${index + 1}`} delay={index * 0.05} key={image.src}>
-            <button className="gallery-button" onClick={() => setActive(index)} aria-label={`Open image: ${image.caption}`}><img src={image.src} alt={image.alt} loading="lazy" /><span className="gallery-caption">{image.caption}<ArrowUpRight size={15} /></span></button>
-          </Reveal>)}
-        </div>
-      </div>
-      <AnimatePresence>
-        {active !== null && <motion.div className="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setActive(null)}>
-          <button className="lightbox-close" onClick={() => setActive(null)} aria-label="Close photo viewer"><X size={22} /></button>
-          <button className="lightbox-arrow lightbox-prev" onClick={(event) => { event.stopPropagation(); change(-1); }} aria-label="Previous image"><ChevronLeft size={25} /></button>
-          <motion.figure key={content.images[active].src} initial={{ scale: 0.96, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} onClick={(event) => event.stopPropagation()}>
-            <img src={content.images[active].src} alt={content.images[active].alt} /><figcaption>{content.images[active].caption}</figcaption>
-          </motion.figure>
-          <button className="lightbox-arrow lightbox-next" onClick={(event) => { event.stopPropagation(); change(1); }} aria-label="Next image"><ChevronRight size={25} /></button>
-        </motion.div>}
-      </AnimatePresence>
     </section>
   );
 }
